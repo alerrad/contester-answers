@@ -1,52 +1,40 @@
 #include <iostream>
-#include <string>
 #include <cstring>
-#include <vector>
+
 using namespace std;
 
-const int N = 100;
 int n;
-char location[N];
+const int N = 1001;
 struct Train {
     int id;
-    char location[N];
-    char tm[N];
+    char destination[N];
+    char time[N];
 };
-vector <Train> arr;
+
+void upperize(char* s) {
+    for (int i = 0; i < strlen(s); ++i) {
+        *(s + i) = toupper(*(s + i));
+    }
+}
 
 int main() {
     cin >> n;
-
-    for (int i = 0; i < n; ++i) {
-        Train tmp;
-        cin >> tmp.id >> tmp.location >> tmp.tm;
-        arr.push_back(tmp);
+    char destination[N];
+    Train* TRAIN = new Train[n];
+    for (int i = 0; i < n; i++) {
+        cin >> TRAIN[i].id >> TRAIN[i].destination >> TRAIN[i].time;
+        upperize(TRAIN[i].destination);
     }
-    cin >> location;
+    cin >> destination;
+    upperize(destination);
 
     for (int i = 0; i < n; ++i) {
-        if (strlen(location) == strlen(arr[i].location)) {
-            bool t = true;
-            string fin;
-            fin = arr[i].location;
-            int q = strlen(arr[i].location);
-            for (int j = 0; j < q; ++j) {
-                if (fin[j] != location[j] - 32 && fin[j] != location[j] + 32 && fin[j] != location[j]) {
-                    t = false;
-                    break;
-                }
-            }
-            if (t) {
-                cout << arr[i].id << '_';
-                for (int j = 0; j < fin.size(); ++j) {
-                    if (fin[j] >= 'a' && fin[j] <= 'z') fin[j] -= 32;
-                }
-                cout << fin << '_' << arr[i].tm;
-                return 0;
-            }
+        if (!strcmp(TRAIN[i].destination, destination)) {
+            cout << TRAIN[i].id << ' ' << TRAIN[i].destination << ' ' << TRAIN[i].time;
+            return 0;
         }
     }
-
+    
     cout << "Impossible";
     return 0;
 }

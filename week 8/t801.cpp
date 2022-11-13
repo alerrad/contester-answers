@@ -5,7 +5,7 @@ using namespace std;
 long long a, b;
 long long* ptra = &a;
 long long* ptrb = &b;
-void swap2(ll a, ll b) {
+void swap2(long long a, long long b) {
     *ptra = b;
     *ptrb = a;
 }
