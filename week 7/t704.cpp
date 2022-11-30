@@ -7,25 +7,25 @@ int n, grid[N][N];
 
 void spiralka(int cur, int targ, int depth) {
     // Fill top row
-    for (int i = 0 + depth; i < n - depth; ++i) {
+    for (int i = depth; i < n - depth; ++i) {
         grid[depth][i] = cur;
         cur++;
     }
     if (cur > targ) return;
     // Fill right col
-    for (int i = 0 + depth + 1; i < n - depth; ++i) {
+    for (int i = depth + 1; i < n - depth; ++i) {
         grid[i][n - depth - 1] = cur;
         cur++;
     }
     if (cur > targ) return;
     // Fill bottom row
-    for (int i = n - depth - 2; i >= 0 + depth; --i) {
+    for (int i = n - depth - 2; i >= depth; --i) {
         grid[n - depth - 1][i] = cur;
         cur++;
     }
     if (cur > targ) return;
     // Fill left col
-    for (int i = n - depth - 2; i > 0 + depth; --i) {
+    for (int i = n - depth - 2; i > depth; --i) {
         grid[i][depth] = cur;
         cur++;
     }
